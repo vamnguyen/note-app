@@ -77,3 +77,14 @@ export const updateNote = async ({ params, request }) => {
   );
   return updateNote;
 };
+
+export const deleteNoteById = async (noteId) => {
+  const query = `mutation DeleteNote($deleteNoteId: String!) {
+    deleteNote(id: $deleteNoteId)
+  }`;
+  const { deleteNote } = await graphqlRequest({
+    query,
+    variables: { deleteNoteId: noteId },
+  });
+  return deleteNote;
+};

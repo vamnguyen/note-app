@@ -54,6 +54,22 @@ export const resolvers = {
       await newFolder.save();
       return newFolder;
     },
+    deleteFolder: async (parent, args) => {
+      const folderId = args.id;
+
+      try {
+        // First, delete the notes associated with the folder
+        await NoteModel.deleteMany({ folderId });
+
+        // Then, delete the folder itself by its ID
+        await FolderModel.findByIdAndDelete(folderId);
+
+        return true;
+      } catch (error) {
+        console.error("Error deleting folder:", error);
+        return false;
+      }
+    },
     register: async (parent, args) => {
       const foundUser = await AuthorModel.findOne({ uid: args.uid });
 
@@ -74,6 +90,18 @@ export const resolvers = {
       const noteId = args.id;
       const note = await NoteModel.findByIdAndUpdate(noteId, args);
       return note;
+    },
+    deleteNote: async (parent, args) => {
+      const noteId = args.id;
+
+      try {
+        // Delete the note by its ID
+        await NoteModel.findByIdAndDelete(noteId);
+        return true; // Return true to indicate successful deletion
+      } catch (error) {
+        console.error("Error deleting note:", error);
+        return false; // Return false to indicate an error occurred
+      }
     },
   },
 };

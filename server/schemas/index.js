@@ -28,8 +28,10 @@ export const typeDefs = `#graphql
 
   type Mutation {
     addFolder(name: String!): Folder,
+    deleteFolder(id: String!): Boolean
     register(uid: String!, name: String!): Author
     addNote(content: String!, folderId: ID!): Note
     updateNote(id: String!, content: String!): Note
+    deleteNote(id: String!): Boolean
   }
 `;

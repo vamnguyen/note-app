@@ -29,3 +29,17 @@ export const addNewFolder = async (newFolder) => {
   });
   return data;
 };
+
+export const deleteFolderById = async (folderId) => {
+  const query = `mutation DeleteFolder($deleteFolderId: String!) {
+    deleteFolder(id: $deleteFolderId)
+  }`;
+  const { deleteFolder } = await graphqlRequest({
+    query,
+    variables: {
+      deleteFolderId: folderId,
+    },
+  });
+
+  return deleteFolder;
+};

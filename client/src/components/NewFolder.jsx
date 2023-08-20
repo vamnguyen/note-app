@@ -12,6 +12,7 @@ import { CreateNewFolderOutlined } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { addNewFolder } from "../utils/folderUtils";
 import { useSearchParams, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const NewFolder = () => {
   const [newFolderName, setNewFolderName] = useState("");
@@ -35,12 +36,11 @@ const NewFolder = () => {
   const handleAddNewFolder = async () => {
     const { addFolder } = await addNewFolder({ name: newFolderName });
     console.log("handleAddNewFolder ~ addFolder:", addFolder);
-
+    toast.success("Add new Folder success!");
     handleClose();
   };
 
   useEffect(() => {
-    console.log("popupName:", popupName);
     if (popupName === "add-folder") {
       setOpen(true);
       return;
