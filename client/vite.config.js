@@ -9,4 +9,9 @@ export default defineConfig({
     // necessary for segment analytics lib to work
     global: "window",
   },
+  build: {
+    rollupOptions: {
+      external: ["graphql"],
+    },
+  },
 });
