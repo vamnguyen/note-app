@@ -21,6 +21,7 @@ export default function AuthProvider({ children }) {
           window.location.reload();
         }
         setIsLoading(false);
+        navigate("/");
         return;
       }
 
