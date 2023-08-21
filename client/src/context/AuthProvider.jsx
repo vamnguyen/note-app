@@ -21,6 +21,7 @@ export default function AuthProvider({ children }) {
           console.log("Check before page reload...");
           window.location.reload();
           console.log("Check after page reload...");
+          navigate("/");
         }
         setIsLoading(false);
         return;
