@@ -18,10 +18,11 @@ export default function AuthProvider({ children }) {
         setUser(user);
         if (user.accessToken !== localStorage.getItem("accessToken")) {
           localStorage.setItem("accessToken", user.accessToken);
+          console.log("Check before page reload...");
           window.location.reload();
+          console.log("Check after page reload...");
         }
         setIsLoading(false);
-        navigate("/");
         return;
       }
 
